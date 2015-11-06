@@ -1,0 +1,59 @@
+pre_install() {
+
+    # create a system user for the process
+    if [[ ! $(id dataloop 2>/dev/null) ]] ;then
+    # create a dataloop system account
+    /usr/bin/useradd --system --home-dir /opt/dataloop -s /usr/bin/bash --groups adm dataloop
+    fi
+
+    if [[ ! $(groups dataloop | grep &>/dev/null 'badmb') ]] ; then
+      /usr/bin/usermod -a -G adm dataloop
+    fi
+}
+
+post_install() {
+
+    # symlink to /usr/bin for the binary
+    # Hard to create relative symlink in centos 6.5, so do it post-install
+    if [ ! -L /usr/bin/dataloop-agent ] ; then
+    ln -v -s /opt/dataloop/bin/dataloop-agent /usr/bin/dataloop-agent
+    fi
+
+    # Sort out file permissions
+    if [[ $(id dataloop 2>/dev/null) ]] ;then
+    chown -R dataloop:dataloop /etc/dataloop
+    chown -R dataloop:dataloop /var/log/dataloop/
+    chown -R dataloop:dataloop /opt/dataloop/
+    fi
+
+}
+
+pre_upgrade() {
+    pre_install
+}
+
+post_upgrade() {
+    post_install
+}
+
+pre_remove() {
+
+    # stop the service
+    service dataloop-agent stop 2>/dev/null
+
+    # Remove bin path symlink
+    if [ ! -L /usr/bin/dataloop-agent ] ; then
+    rm -f /usr/bin/dataloop-agent
+    fi
+}
+
+post_remove() {
+    #
+    # Perform necessary dataloop-agent removal steps
+    # after package is uninstalled.
+    #
+
+    echo "dataloop-agent has been uninstalled!"
+
+    exit 0
+}

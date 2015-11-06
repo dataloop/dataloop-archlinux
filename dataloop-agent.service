@@ -1,0 +1,14 @@
+[Unit]
+Description=Dataloop Monitoring Agent
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+ExecStart=/opt/dataloop/embedded/bin/python /opt/dataloop/bin/dataloop-agent --config /etc/dataloop/agent.yaml
+ExecStopPost=/opt/dataloop/embedded/bin/python /opt/dataloop/bin/dataloop-agent --config /etc/dataloop/agent.yaml agent deregister
+PrivateTmp=true
+LimitNOFILE=4096
+User=dataloop
+
+[Install]
+WantedBy=multi-user.target
