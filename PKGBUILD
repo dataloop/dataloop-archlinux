@@ -1,6 +1,6 @@
 # Maintainer: Tom Ashley <tom.ashley[at]dataloop[dot]io>
 pkgname=dataloop-agent
-pkgver=1.1.35
+pkgver=1.1.42
 pkgrel=1
 pkgdesc="The Full stack Dataloop Agent"
 url="http://www.dataloop.io"
@@ -15,7 +15,7 @@ backup=()
 install='dataloop-agent.install'
 source=("https://download.dataloop.io/deb/pool/main/d/dataloop-agent/${pkgname}_${pkgver}-${pkgrel}_amd64.deb"
         "dataloop-agent.service")
-sha512sums=('0a2fbccecca71a81c14222035eb04fc5f5e5204590b1f632ad657f5aa978246049104f1c7667066ce56290697cb2bbd849b5f0b2a53fbc89e495b6b90864d65b'
+sha512sums=('296d7f8fd8cb8938e62f36eeee70cb0e7d532e61595fc7210772e8636ced34d3f5d9a1cfe1bea5fbcb3513be86e94520e087147fd2f4e5a513266ae3a454cb3b'
             'cddcdbea636e40c67d8d396b477623cffd5219e3155422dc53196e9ede9736dde73ef7a9cac16ffa4d6cce924f533ed6618616673bf808656e8022342be01b16')
 
 package() {
