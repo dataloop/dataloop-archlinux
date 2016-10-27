@@ -11,7 +11,7 @@ optdepends=()
 makedepends=()
 conflicts=()
 replaces=()
-backup=()
+backup=('etc/dataloop/agent.yaml')
 install='dataloop-agent.install'
 source=("https://download.dataloop.io/deb/pool/main/d/dataloop-agent/${pkgname}_${pkgver}-${pkgrel}_amd64.deb"
         "dataloop-agent.service")
