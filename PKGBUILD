@@ -1,6 +1,6 @@
 # Maintainer: Tom Ashley <tom.ashley[at]dataloop[dot]io>
 pkgname=dataloop-agent
-pkgver=1.1.42
+pkgver=1.3.11
 pkgrel=1
 pkgdesc="The Full stack Dataloop Agent"
 url="http://www.dataloop.io"
@@ -15,7 +15,7 @@ backup=()
 install='dataloop-agent.install'
 source=("https://download.dataloop.io/deb/pool/main/d/dataloop-agent/${pkgname}_${pkgver}-${pkgrel}_amd64.deb"
         "dataloop-agent.service")
-sha512sums=('296d7f8fd8cb8938e62f36eeee70cb0e7d532e61595fc7210772e8636ced34d3f5d9a1cfe1bea5fbcb3513be86e94520e087147fd2f4e5a513266ae3a454cb3b'
+sha512sums=('f3adf0f71994dd1432bcfa37090ef6b7d59969938abba8b4bbb3728b9919b2b520b8eebdd54ba28284b15552b1f25ee340879abcb922e204e4039737bab347e2'
             'cddcdbea636e40c67d8d396b477623cffd5219e3155422dc53196e9ede9736dde73ef7a9cac16ffa4d6cce924f533ed6618616673bf808656e8022342be01b16')
 
 package() {
@@ -29,4 +29,5 @@ package() {
   install -Dm644 ../dataloop-agent.service "$pkgdir"/usr/lib/systemd/system/dataloop-agent.service
 
 }
+
 # vim:set ts=2 sw=2 et:
